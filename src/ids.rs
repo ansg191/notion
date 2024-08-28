@@ -1,5 +1,5 @@
 use std::fmt::Display;
-use std::fmt::Error;
+use std::convert::Infallible;
 
 pub trait Identifier: Display {
     fn value(&self) -> &str;
@@ -50,7 +50,7 @@ macro_rules! identifer {
         }
 
         impl std::str::FromStr for $name {
-            type Err = Error;
+            type Err = Infallible;
 
             fn from_str(s: &str) -> Result<Self, Self::Err> {
                 Ok($name(s.to_string()))
